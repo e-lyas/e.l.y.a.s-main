@@ -179,172 +179,103 @@ Desactivated
 
 */
 
-/* Info bar */
-.player .info {
-position: absolute;
-height: 60px;
-top: 0;
-opacity: 0;
-left: 10px;
-right: 10px;
-background-color: rgba(255, 255, 255, 0.5);
-padding: 5px 15px 5px 110px;
-border-radius: 15px;
-transition: all .5s ease;
-}
-
-.player .info.artist,
-.player .info.name {
-display: block;
-}
-
-.player .info.artist {
-color: #222;
-font-size: 16px;
-margin-bottom: 5px;
-}
-
-.player .info.name {
-color: #999;
-font-size: 12px;
-margin-bottom: 8px;
-}
-
-.player .info .progress-bar {
-background-color: #ddd;
-height: 2px;
-width: 100%;
-position: relative;
-}
-
-.player .info .progress-bar .bar {
-position: absolute;
-left: 0;
-top: 0;
-bottom: 0;
-background-color: red;
-width: 10%;
-transition: all .2s ease;
-}
-
-.player .info.active {
-top: -60px;
-opacity: 1;
-transition: all .5s ease;
-}
-
-/* Control panel */
-.player .control-panel {
-position: relative;
-background-color: #fff;
-border-radius: 15px;
-width: 300px;
-height: 80px;
-z-index: 5;
-box-shadow: 0px 20px 20px 5px rgba(132, 132, 132, 0.3);
-}
-
-.player .control-panel .album-art {
-position: absolute;
-left: 20px;
-top: -15px;
-height: 80px;
-width: 80px;
-border-radius: 50%;
-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0);
-transform: scale(1);
-transition: all .5s ease;
-}
-
-.player .control-panel .album-art::after {
-content: '';
-position: absolute;
-top: 50%;
-left: 50%;
-width: 15px;
-height: 15px;
-background-color: #fff;
-border-radius: 50%;
-z-index: 5;
-transform: translate(-50%, -50%);
-}
-
-.player .control-panel .album-art::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-border-radius: 50%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: 80px;
-background-image: url('https://i.scdn.co/image/9dcbd30dbe0c621cbaeae427cf80eff9877b4fcd');
-}
-
-.player .control-panel.active .album-art {
-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
-transform: scale(1.2);
-transition: all .5s ease;
-}
-
-.player .control-panel.active .album-art::before {
-animation: rotation 3s infinite linear;
-}
-
-@keyframes rotation {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
-}
-
-/* Controls */
-.player .control-panel .controls {
-display: flex;
-justify-content: flex-end;
-height: 80px;
-padding: 0 15px;
-}
-
-.player .control-panel .controls .prev,
-.player .control-panel .controls .play,
-.player .control-panel .controls .next {
-width: 55px;
-height: auto;
-border-radius: 10px;
-background-position: center center;
-background-repeat: no-repeat;
-background-size: 20px;
-margin: 5px 0;
-background-color: #fff;
-cursor: pointer;
-transition: background-color .3s ease;
-}
-
-.player .control-panel .controls .prev:hover,
-.player .control-panel .controls .play:hover,
-.player .control-panel .controls .next:hover {
-background-color: #eee;
-}
-
-/* === MUSIC PLAYER EMBEDDED === */
 .player {
   position: relative;
-  margin-top: 25px; /* space below your social icons */
+  margin-top: 25px;
+  width: 90%;
+  max-width: 350px;
+  padding: 15px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  z-index: 3;
+  color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
-.player .control-panel,
 .player .info {
-  opacity: 1 !important;
-  visibility: visible !important;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.player .control-panel {
-  border: 1px solid rgba(255,255,255,0.3);
-  backdrop-filter: blur(5px);
+.player .album-art {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.1);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.player .album-art.playing {
+  transform: scale(1.1) rotate(360deg);
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: scale(1.1) rotate(0deg); }
+  100% { transform: scale(1.1) rotate(360deg); }
+}
+
+.player .track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player .track-info .artist {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.player .track-info .name {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.player .progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.player .progress-bar .bar {
+  height: 100%;
+  width: 0%;
+  background: red;
+  transition: width 0.2s linear;
+}
+
+.player .controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.player .controls div {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.player .controls div:hover {
+  background: rgba(255,255,255,0.3);
 }
