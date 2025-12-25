@@ -224,3 +224,70 @@ body {
     background: rgba(255,255,255,0.3);
     font-weight: bold;
 }
+
+
+/* Existing Media Query */
+@media (max-width: 400px) {
+    .profile-container {
+        width: 95vw;
+        padding: 15px; /* reduce padding slightly */
+    }
+
+    .profile-pic {
+        width: 90px;
+        height: 90px; /* smaller profile pic */
+    }
+
+    .username {
+        font-size: 1.8rem; /* scale down text */
+    }
+
+    #typing-text {
+        font-size: 1.1rem; /* smaller typing text */
+    }
+
+    .RnVja3lvdQ {
+        font-size: 18px; /* smaller alternate typing text */
+        padding: 4px 5px;
+    }
+
+    /* Playlist adjustments */
+    .playlist-container {
+        max-height: 200px; /* fit smaller screens */
+        padding: 10px;
+    }
+
+    .playlist li {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .playlist li img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .playlist li .song-title {
+        font-size: 0.85rem;
+    }
+
+    .playlist li .song-artist {
+        font-size: 0.7rem;
+    }
+
+    /* Social icons */
+    .social-icons a img {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Loading screen text */
+    .loading-text {
+        font-size: 1.2rem;
+    }
+
+    #guardian {
+        width: 150px;
+        height: 150px;
+    }
+}
