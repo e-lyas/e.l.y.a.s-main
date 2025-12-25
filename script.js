@@ -188,3 +188,27 @@ loadingScreen.addEventListener("click", () => {
 });
 
 });
+
+// Playlist JS - only affects player functionality
+document.querySelectorAll('.playlist li').forEach(item => {
+    item.addEventListener('click', () => {
+        const index = parseInt(item.getAttribute('data-index'));
+        player.loadTrack(index);
+        player.audio.play();
+        player.controlPanel.classList.add('active');
+        player.infoBar.classList.add('active');
+
+        // Highlight current track
+        document.querySelectorAll('.playlist li').forEach(li => li.classList.remove('active'));
+        item.classList.add('active');
+    });
+});
+
+// Update highlight when track changes via nextTrack()
+const originalNextTrack = player.nextTrack.bind(player);
+player.nextTrack = function() {
+    originalNextTrack();
+    const allTracks = document.querySelectorAll('.playlist li');
+    allTracks.forEach(li => li.classList.remove('active'));
+    allTracks[player.currentTrackIndex].classList.add('active');
+};
