@@ -212,3 +212,26 @@ player.nextTrack = function() {
     allTracks.forEach(li => li.classList.remove('active'));
     allTracks[player.currentTrackIndex].classList.add('active');
 };
+
+document.querySelectorAll('.playlist li').forEach(item => {
+    item.addEventListener('click', () => {
+        const index = parseInt(item.getAttribute('data-index'));
+        player.loadTrack(index);
+        player.audio.play();
+        player.controlPanel.classList.add('active');
+        // player.infoBar.classList.add('active'); // optional: comment this out to prevent top jump
+
+        // Highlight current track
+        document.querySelectorAll('.playlist li').forEach(li => li.classList.remove('active'));
+        item.classList.add('active');
+    });
+});
+
+// Keep highlight in sync when track changes via nextTrack()
+const originalNextTrack = player.nextTrack.bind(player);
+player.nextTrack = function() {
+    originalNextTrack();
+    const allTracks = document.querySelectorAll('.playlist li');
+    allTracks.forEach(li => li.classList.remove('active'));
+    allTracks[player.currentTrackIndex].classList.add('active');
+};
