@@ -1,148 +1,328 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-/* Body & Background */
+/*  DESACTIVATED
+#bg-video {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100vw;
+height: 100vh;
+object-fit: cover;
+z-index: -1;
+display: none;
+}
+*/
 body {
-    overflow: hidden;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
+overflow: hidden;
+color: white;
+font-family: 'Poppins', sans-serif;
+text-align: center;
 
-    background-image: url('Background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
+/* Background image */  
+background-image: url('Background.jpg');  
+background-size: cover;  
+background-position: center;  
+background-repeat: no-repeat;  
+background-attachment: fixed;
+
 }
 
-/* Profile Container */
 .profile-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0);
-    border-radius: 15px;
-    padding: 20px;
-    width: 380px;
-    z-index: 2;
-    max-width: 90vw;
-    opacity: 0;
-    transition: opacity 1.2s ease-out, transform 1s ease-out;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(0, 0, 0, 0);
+border-radius: 15px;
+padding: 20px;
+width: 380px;
+z-index: 2;
+max-width: 90vw;
+opacity: 0;
+transition: opacity 1.2s ease-out, transform 1s ease-out;
 }
 
 .profile-container.fade-in {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+opacity: 1;
+transform: translate(-50%, -50%) scale(1);
 }
 
 .profile-pic {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    opacity: 0.9;
-    border: 2px solid rgba(140, 140, 140, 0.5);
-    box-shadow: 0 0 15px rgba(120, 120, 120, 0.6);
-    transition: 0.3s ease-in-out;
+width: 110px;
+height: 110px;
+border-radius: 50%;
+opacity: 0.9;
+border: 2px solid rgba(140, 140, 140, 0.5);
+box-shadow: 0 0 15px rgba(120, 120, 120, 0.6);
+transition: 0.3s ease-in-out;
 }
 
 .username {
-    font-size: 2.2rem;
-    font-weight: 600;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+font-size: 2.2rem;
+font-weight: 600;
+text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
 }
 
 #typing-text {
-    font-size: 1.3rem;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(220, 220, 220, 0.9);
+font-size: 1.3rem;
+color: white;
+font-weight: bold;
+text-shadow: 0 0 10px rgba(220, 220, 220, 0.9);
 }
 
 .RnVja3lvdQ {
-    font-size: 23px;
-    background: rgba(0, 0, 0, 0.50);
-    border-radius: 20px;
-    padding: 5px 6px;
-    display: flex;
-    gap: 0px;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+font-size: 23px;
+background: rgba(0, 0, 0, 0.50);
+border-radius: 20px;
+padding: 5px 6px;
+display: flex;
+gap: 0px;
+align-items: center;
+justify-content: center;
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
-/* Social Links */
 .social-icons {
-    text-align: center;
-    margin-top: 10px;
+text-align: center;
+margin-top: 10px;
 }
 
 .social-icons a {
-    display: inline-block;
-    text-decoration: none;
-    position: relative;
-    margin: 0 10px;
+display: inline-block;
+text-decoration: none;
+position: relative;
+margin: 0 10px;
 }
 
 .social-icons a img {
-    width: 40px;
-    height: 40px;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-    transition: filter 0.3s ease-in-out;
-    vertical-align: middle;
+width: 40px;
+height: 40px;
+filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+transition: filter 0.3s ease-in-out;
+vertical-align: middle;
 }
 
 .social-icons a:hover img {
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
 }
 
-/* Responsive */
 @media (max-width: 400px) {
-    .profile-container {
-        width: 95vw;
-    }
+.profile-container {
+width: 95vw;
+}
 }
 
-/* Loading Screen */
 .loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, black 70%, #222 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 1000;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: radial-gradient(circle, black 70%, #222 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+z-index: 1000;
+transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
 }
 
 .loading-text {
-    font-size: 1.5rem;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+font-size: 1.5rem;
+color: white;
+font-weight: bold;
+text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
 }
 
 #guardian {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Triskelion-spiral-3.svg') no-repeat center;
-    background-size: contain;
-    filter: invert(100%) contrast(150%);
-    animation: pulse 3s infinite alternate ease-in-out;
-}
+position: absolute;
+width: 200px;
+height: 200px;
+background: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Triskelion-spiral-3.svg') no-repeat center;
+background-size: contain;
+filter: invert(100%) contrast(150%);
+animation: pulse 3s infinite alternate ease-in-out;
+/* } */
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.1); opacity: 1; }
+0% { transform: scale(1); opacity: 0.8; }
+100% { transform: scale(1.1); opacity: 1; }
+}
+
+/*
+
+#mute-btn {
+position: fixed;
+top: 20px;
+left: 20px;
+width: 50px;
+height: 50px;
+background: none;
+border: none;
+cursor: pointer;
+filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+#mute-btn img {
+width: 100%;
+height: 100%;
+}
+
+Desactivated
+
+*/
+
+/* Info bar */
+.player .info {
+position: absolute;
+height: 60px;
+top: 0;
+opacity: 0;
+left: 10px;
+right: 10px;
+background-color: rgba(255, 255, 255, 0.5);
+padding: 5px 15px 5px 110px;
+border-radius: 15px;
+transition: all .5s ease;
+}
+
+.player .info.artist,
+.player .info.name {
+display: block;
+}
+
+.player .info.artist {
+color: #222;
+font-size: 16px;
+margin-bottom: 5px;
+}
+
+.player .info.name {
+color: #999;
+font-size: 12px;
+margin-bottom: 8px;
+}
+
+.player .info .progress-bar {
+background-color: #ddd;
+height: 2px;
+width: 100%;
+position: relative;
+}
+
+.player .info .progress-bar .bar {
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+background-color: red;
+width: 10%;
+transition: all .2s ease;
+}
+
+.player .info.active {
+top: -60px;
+opacity: 1;
+transition: all .5s ease;
+}
+
+/* Control panel */
+.player .control-panel {
+position: relative;
+background-color: #fff;
+border-radius: 15px;
+width: 300px;
+height: 80px;
+z-index: 5;
+box-shadow: 0px 20px 20px 5px rgba(132, 132, 132, 0.3);
+}
+
+.player .control-panel .album-art {
+position: absolute;
+left: 20px;
+top: -15px;
+height: 80px;
+width: 80px;
+border-radius: 50%;
+box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0);
+transform: scale(1);
+transition: all .5s ease;
+}
+
+.player .control-panel .album-art::after {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 15px;
+height: 15px;
+background-color: #fff;
+border-radius: 50%;
+z-index: 5;
+transform: translate(-50%, -50%);
+}
+
+.player .control-panel .album-art::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+border-radius: 50%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: 80px;
+background-image: url('https://i.scdn.co/image/9dcbd30dbe0c621cbaeae427cf80eff9877b4fcd');
+}
+
+.player .control-panel.active .album-art {
+box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+transform: scale(1.2);
+transition: all .5s ease;
+}
+
+.player .control-panel.active .album-art::before {
+animation: rotation 3s infinite linear;
+}
+
+@keyframes rotation {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+/* Controls */
+.player .control-panel .controls {
+display: flex;
+justify-content: flex-end;
+height: 80px;
+padding: 0 15px;
+}
+
+.player .control-panel .controls .prev,
+.player .control-panel .controls .play,
+.player .control-panel .controls .next {
+width: 55px;
+height: auto;
+border-radius: 10px;
+background-position: center center;
+background-repeat: no-repeat;
+background-size: 20px;
+margin: 5px 0;
+background-color: #fff;
+cursor: pointer;
+transition: background-color .3s ease;
+}
+
+.player .control-panel .controls .prev:hover,
+.player .control-panel .controls .play:hover,
+.player .control-panel .controls .next:hover {
+background-color: #eee;
 }
