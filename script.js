@@ -131,6 +131,7 @@ const tracks = [
 ];
 
 const player = new MusicPlayer(tracks);
+player.updatePlaylistHighlight(); // highlight the first track on page load
 
 // Playlist click
 document.querySelectorAll('.playlist li').forEach((item, idx) => {
