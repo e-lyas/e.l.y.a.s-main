@@ -204,12 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingScreen.classList.add("hidden");
         profileContainer.classList.add("fade-in");
 
-        // Start music after click
-        if (player.audio.paused) {
-            player.audio.play().catch(err => console.log(err));
-        }
+        // Start music immediately
+        player.audio.play().catch(err => console.log(err));
 
-        // Show info bar and control panel immediately
+        // Show info bar and control panel
         player.controlPanel.classList.add('active');
         player.infoBar.classList.add('active');
     });
@@ -312,3 +310,7 @@ const tracks = [
 ];
 
 const player = new MusicPlayer(tracks);
+
+// Preload the first track so it plays instantly on click
+player.audio.preload = 'auto';
+player.loadTrack(0);
