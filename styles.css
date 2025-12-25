@@ -1,281 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-/*  DESACTIVATED
-#bg-video {
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 100vw;
-height: 100vh;
-object-fit: cover;
-z-index: -1;
-display: none;
-}
-*/
 body {
-overflow: hidden;
-color: white;
-font-family: 'Poppins', sans-serif;
-text-align: center;
-
-/* Background image */  
-background-image: url('Background.jpg');  
-background-size: cover;  
-background-position: center;  
-background-repeat: no-repeat;  
-background-attachment: fixed;
-
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: url('Background.jpg') center/cover no-repeat fixed;
+  color: white;
 }
 
 .profile-container {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: rgba(0, 0, 0, 0);
-border-radius: 15px;
-padding: 20px;
-width: 380px;
-z-index: 2;
-max-width: 90vw;
-opacity: 0;
-transition: opacity 1.2s ease-out, transform 1s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  max-width: 90vw;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(0,0,0,0);
+  z-index: 2;
 }
 
-.profile-container.fade-in {
-opacity: 1;
-transform: translate(-50%, -50%) scale(1);
-}
+.profile-pic { width: 110px; height: 110px; border-radius: 50%; border: 2px solid rgba(140,140,140,0.5); }
+.username { font-size: 2.2rem; font-weight: 600; text-shadow: 0 0 10px #fff; }
+#typing-text { font-size: 1.3rem; font-weight: bold; text-shadow: 0 0 10px #ccc; }
+.RnVja3lvdQ { font-size: 23px; background: rgba(0,0,0,0.5); border-radius: 20px; padding: 5px; display: flex; justify-content: center; }
 
-.profile-pic {
-width: 110px;
-height: 110px;
-border-radius: 50%;
-opacity: 0.9;
-border: 2px solid rgba(140, 140, 140, 0.5);
-box-shadow: 0 0 15px rgba(120, 120, 120, 0.6);
-transition: 0.3s ease-in-out;
-}
-
-.username {
-font-size: 2.2rem;
-font-weight: 600;
-text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
-}
-
-#typing-text {
-font-size: 1.3rem;
-color: white;
-font-weight: bold;
-text-shadow: 0 0 10px rgba(220, 220, 220, 0.9);
-}
-
-.RnVja3lvdQ {
-font-size: 23px;
-background: rgba(0, 0, 0, 0.50);
-border-radius: 20px;
-padding: 5px 6px;
-display: flex;
-gap: 0px;
-align-items: center;
-justify-content: center;
-box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
-text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-}
-
-.social-icons {
-text-align: center;
-margin-top: 10px;
-}
-
-.social-icons a {
-display: inline-block;
-text-decoration: none;
-position: relative;
-margin: 0 10px;
-}
-
-.social-icons a img {
-width: 40px;
-height: 40px;
-filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-transition: filter 0.3s ease-in-out;
-vertical-align: middle;
-}
-
-.social-icons a:hover img {
-filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
-}
-
-@media (max-width: 400px) {
-.profile-container {
-width: 95vw;
-}
-}
-
-.loading-screen {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: radial-gradient(circle, black 70%, #222 100%);
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-z-index: 1000;
-transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.hidden {
-opacity: 0;
-visibility: hidden;
-pointer-events: none;
-}
-
-.loading-text {
-font-size: 1.5rem;
-color: white;
-font-weight: bold;
-text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
-}
-
-#guardian {
-position: absolute;
-width: 200px;
-height: 200px;
-background: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Triskelion-spiral-3.svg') no-repeat center;
-background-size: contain;
-filter: invert(100%) contrast(150%);
-animation: pulse 3s infinite alternate ease-in-out;
-/* } */
-
-@keyframes pulse {
-0% { transform: scale(1); opacity: 0.8; }
-100% { transform: scale(1.1); opacity: 1; }
-}
-
-/*
-
-#mute-btn {
-position: fixed;
-top: 20px;
-left: 20px;
-width: 50px;
-height: 50px;
-background: none;
-border: none;
-cursor: pointer;
-filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-}
-
-#mute-btn img {
-width: 100%;
-height: 100%;
-}
-
-Desactivated
-
-*/
+.social-icons { margin-top: 10px; }
+.social-icons a img { width: 40px; height: 40px; filter: drop-shadow(0 0 8px #fff); }
 
 .player {
-  position: relative;
   margin-top: 25px;
   width: 90%;
   max-width: 350px;
   padding: 15px;
   border-radius: 15px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0,0,0,0.3);
   backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-}
-
-.player .info {
-  width: 100%;
-  display: flex;
-  align-items: center;
   gap: 10px;
 }
 
-.player .album-art {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: rgba(255,255,255,0.1);
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.3s ease;
-}
-
-.player .album-art.playing {
-  transform: scale(1.1) rotate(360deg);
-  animation: spin 5s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: scale(1.1) rotate(0deg); }
-  100% { transform: scale(1.1) rotate(360deg); }
-}
-
-.player .track-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.player .track-info .artist {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.player .track-info .name {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.7);
-}
-
-.player .progress-bar {
-  width: 100%;
-  height: 4px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-top: 5px;
-}
-
-.player .progress-bar .bar {
-  height: 100%;
-  width: 0%;
-  background: red;
-  transition: width 0.2s linear;
-}
-
-.player .controls {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 5px;
-}
-
-.player .controls div {
-  width: 40px;
-  height: 40px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 1.1rem;
-}
-
-.player .controls div:hover {
-  background: rgba(255,255,255,0.3);
-}
+.player .info { display: flex; align-items: center; gap: 10px; width: 100%; }
+.player .album-art { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.1); background-size: cover; }
+.player .album-art.playing { animation: spin 5s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.player .track-info { flex: 1; text-align: left; }
+.player .track-info .artist { font-weight: 600; font-size: 0.9rem; }
+.player .track-info .name { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+.player .progress-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 5px; overflow: hidden; }
+.player .progress-bar .bar { height: 100%; width: 0%; background: red; transition: width 0.2s linear; }
+.player .controls { display: flex; justify-content: space-around; }
+.player .controls div { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s; font-size: 1.1rem; }
+.player .controls div:hover { background: rgba(255,255,255,0.3); }
