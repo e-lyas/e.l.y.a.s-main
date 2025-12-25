@@ -157,21 +157,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (typingForward) {
             charIndex++;
-            if (charIndex >= currentText.length) {
+            if (charIndex > currentText.length) { // fix off-by-one
                 typingForward = false;
                 setTimeout(updateTitle, 1000); // pause at full text
                 return;
             }
         } else {
             charIndex--;
-            if (charIndex <= 0) {
+            if (charIndex < 0) {
                 typingForward = true;
                 currentIndex = (currentIndex + 1) % dynamicTitles.length;
             }
         }
 
-        // Add blinking cursor
-        document.title = staticPart + currentText.substring(0, charIndex) + "|";
+        // No cursor, just @ + text
+        document.title = staticPart + currentText.substring(0, charIndex);
 
         setTimeout(updateTitle, typingForward ? 150 : 100);
     }
