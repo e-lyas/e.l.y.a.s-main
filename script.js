@@ -203,9 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadingScreen.addEventListener("click", () => {
         loadingScreen.classList.add("hidden");
-        setTimeout(() => {
-            profileContainer.classList.add("fade-in");
-        }, 500);
+        profileContainer.classList.add("fade-in");
+
+        // Start the music after user interaction
+        if (player.audio.paused) {
+            player.audio.play().catch(err => console.log(err));
+            player.controlPanel.classList.add('active');
+            player.infoBar.classList.add('active');
+        }
     });
 });
 
