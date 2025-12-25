@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     // e_l.y.a.s typing
     const textElement2 = document.querySelector('.RnVja3lvdQ');
-    const texts2 = ["E.L.Y.A.S","e_l_y_a_s","e!l@y#a$s%"];
+    const texts2 = ["i like cats😸","HTML.CSS.JS","e!l@y#a$s%"];
     let textIndex2 = 0, charIndex2 = 0, isDeleting2 = false;
 
     function typeText2() {
@@ -147,7 +147,7 @@ document.querySelectorAll('.playlist li').forEach((item, idx) => {
 document.addEventListener("DOMContentLoaded", () => {
     // Page title typing with @ prefix
     const staticPart = "@";
-    const dynamicTitles = ["E.L.Y.A.S", "e_l_y_a_s", "e!l@y#a$s%"];
+    const dynamicTitles = ["e-lyas", "e_l.y.a.s", "elyas😹✌️"];
     let currentIndex = 0;
     let charIndex = 0;
     let typingForward = true;
