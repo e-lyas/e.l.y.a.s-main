@@ -148,30 +148,37 @@ body {
 }
 
 
-/* --- Playlist Styles --- */
+/* Playlist Container */
 .playlist-container {
     margin-top: 20px;
     background: rgba(0,0,0,0.7);
     border-radius: 15px;
     padding: 15px;
     text-align: left;
-    max-height: 250px;
-    overflow-y: auto;
+    max-height: 250px; /* keep height limit */
     box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    display: flex;
+    flex-direction: column;
 }
 
+/* Playlist header stays fixed */
 .playlist-container h2 {
     font-size: 1.2rem;
     color: white;
     margin-bottom: 10px;
     text-align: center;
     text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    flex-shrink: 0; /* prevent shrinking */
 }
 
+/* Scrollable list */
 .playlist {
     list-style: none;
     padding: 0;
     margin: 0;
+    overflow-y: auto; /* only the list scrolls */
+    flex-grow: 1;
+    max-height: 200px; /* adjust based on container height */
 }
 
 .playlist li {
