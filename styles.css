@@ -327,23 +327,15 @@ transition: background-color .3s ease;
 background-color: #eee;
 }
 
-/* === MUSIC PLAYER FIX === */
+/* === MUSIC PLAYER EMBEDDED === */
 .player {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: 25px; /* space below your social icons */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  z-index: 10;
-}
-
-/* Make sure player appears after the loading screen fade */
-.profile-container.fade-in + .player {
-  opacity: 1;
-  pointer-events: auto;
+  z-index: 3;
 }
 
 .player .control-panel,
@@ -352,7 +344,6 @@ background-color: #eee;
   visibility: visible !important;
 }
 
-/* Optional aesthetic tweak */
 .player .control-panel {
   border: 1px solid rgba(255,255,255,0.3);
   backdrop-filter: blur(5px);
