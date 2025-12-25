@@ -241,3 +241,68 @@ function updateTitle() {
 }
 
 setInterval(updateTitle, 500);
+
+
+
+class MusicPlayer {
+    constructor(tracks) {
+        this.tracks = tracks;
+        this.currentTrackIndex = 0;
+
+        this.audio = new Audio();
+        this.playBtn = document.getElementById('play');
+        this.controlPanel = document.getElementById('control-panel');
+        this.infoBar = document.getElementById('info');
+        this.albumArt = this.controlPanel.querySelector('.album-art');
+        this.artistElem = this.infoBar.querySelector('.artist');
+        this.nameElem = this.infoBar.querySelector('.name');
+        this.progressBar = this.infoBar.querySelector('.progress-bar .bar');
+
+        this.playBtn.addEventListener('click', () => this.togglePlay());
+        this.audio.addEventListener('timeupdate', () => this.updateProgress());
+        this.audio.addEventListener('ended', () => this.nextTrack());
+
+        this.loadTrack(this.currentTrackIndex);
+    }
+
+    loadTrack(index) {
+        const track = this.tracks[index];
+        this.audio.src = track.src;
+        this.artistElem.textContent = track.artist;
+        this.nameElem.textContent = track.name;
+        this.albumArt.style.backgroundImage = `url('${track.img}')`;
+    }
+
+    togglePlay() {
+        if (this.audio.paused) {
+            this.audio.play();
+            this.controlPanel.classList.add('active');
+            this.infoBar.classList.add('active');
+        } else {
+            this.audio.pause();
+            this.controlPanel.classList.remove('active');
+            this.infoBar.classList.remove('active');
+        }
+    }
+
+    nextTrack() {
+        this.currentTrackIndex = (this.currentTrackIndex + 1) % this.tracks.length;
+        this.loadTrack(this.currentTrackIndex);
+        this.audio.play();
+    }
+
+    updateProgress() {
+        const progress = (this.audio.currentTime / this.audio.duration) * 100;
+        this.progressBar.style.width = `${progress}%`;
+    }
+}
+
+
+const tracks = [
+    { src: '1.meaningful love.mp3', img: 'song1.jpeg', artist: 'Silo/Steven Cranberry', name: 'meaningful love - instrumental' },
+    { src: '2.Dark Red.mp3', img: 'song2.jpeg', artist: 'Steve Lacy', name: 'Dark Red' },
+    { src: '3.welcome and goodbye.mp3', img: 'song3.jpeg', artist: 'Dream/Ivory', name: 'welcome and goodbye' },
+    { src: '4.I Really Want to Stay at Your House.mp3', img: 'song4.jpeg', artist: 'Rosa Walton/Hallie Coggins', name: 'I Really Want to Stay at Your House' }
+];
+
+const player = new MusicPlayer(tracks);
