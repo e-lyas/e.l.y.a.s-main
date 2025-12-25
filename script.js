@@ -1,10 +1,7 @@
+// Typing animations
 document.addEventListener("DOMContentLoaded", () => {
     const textElement = document.querySelector('#typing-text');
-    const texts = [
-        "Made by e-lyas",
-        "Made by e_l.y.a.s",
-        "Made by e.l.y.a.s"
-    ];
+    const texts = ["Made by e-lyas","Made by e_l.y.a.s","Made by e.l.y.a.s"];
     let textIndex = 0, charIndex = 0, isDeleting = false;
 
     function typeText() {
@@ -50,35 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     typeText();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const loadingScreen = document.querySelector(".loading-screen");
-    const loadingText = document.querySelector(".loading-text");
-    const video = document.getElementById("bg-video");
-    loadingScreen.classList.remove("hidden");
-
-    const loadingMessages = ["CLICK ME✌️","CLICK ME🫣","CLICK ME👻"];
-    let index = 0, charIndex = 0, isDeleting = false;
-
-    function typeLoadingText() {
-        if (!loadingText) return;
-        let currentText = loadingMessages[index];
-        loadingText.innerHTML = currentText.substring(0, charIndex) + "<span>|</span>";
-        if (!isDeleting) {
-            charIndex++;
-            if (charIndex > currentText.length) setTimeout(() => isDeleting = true, 1000);
-        } else {
-            charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                index = (index + 1) % loadingMessages.length;
-            }
-        }
-        setTimeout(typeLoadingText, isDeleting ? 100 : 150);
-    }
-    typeLoadingText();
-});
-
-// Titles animation
+// Titles animation in tab
 const titles = ["E.L.Y.A.S","e_l_y_a_s","e!l@y#a$s%"];
 let currentTitleIndex = 0, currentIndex = 0, typingForward = true;
 function updateTitle() {
@@ -97,21 +66,13 @@ function updateTitle() {
 }
 setInterval(updateTitle, 500);
 
-// Music Player
+// Music Player (headless)
 class MusicPlayer {
     constructor(tracks) {
         this.tracks = tracks;
         this.currentTrackIndex = 0;
-
         this.audio = new Audio();
         this.audio.preload = 'auto';
-        this.playBtn = document.getElementById('play');
-        this.controlPanel = document.getElementById('control-panel');
-        this.infoBar = document.getElementById('info');
-        this.albumArt = this.controlPanel.querySelector('.album-art');
-        this.artistElem = this.infoBar.querySelector('.artist');
-        this.nameElem = this.infoBar.querySelector('.name');
-        this.progressBar = this.infoBar.querySelector('.progress-bar .bar');
 
         // Preload all tracks
         this.tracks.forEach(track => {
@@ -120,32 +81,20 @@ class MusicPlayer {
             preloader.preload = 'auto';
         });
 
-        this.playBtn.addEventListener('click', () => this.togglePlay());
-        this.audio.addEventListener('timeupdate', () => this.updateProgress());
-        this.audio.addEventListener('ended', () => this.nextTrack());
-
         this.loadTrack(this.currentTrackIndex);
+
+        // Auto-next
+        this.audio.addEventListener('ended', () => this.nextTrack());
     }
 
     loadTrack(index) {
         const track = this.tracks[index];
         this.audio.src = track.src;
-        this.artistElem.textContent = track.artist;
-        this.nameElem.textContent = track.name;
-        this.albumArt.style.backgroundImage = `url('${track.img}')`;
         this.audio.load();
     }
 
-    togglePlay() {
-        if (this.audio.paused) {
-            this.audio.play();
-            this.controlPanel.classList.add('active');
-            this.infoBar.classList.add('active');
-        } else {
-            this.audio.pause();
-            this.controlPanel.classList.remove('active');
-            this.infoBar.classList.remove('active');
-        }
+    play() {
+        this.audio.play().catch(err => console.log(err));
     }
 
     nextTrack() {
@@ -153,23 +102,18 @@ class MusicPlayer {
         this.loadTrack(this.currentTrackIndex);
         this.audio.play();
     }
-
-    updateProgress() {
-        const progress = (this.audio.currentTime / this.audio.duration) * 100;
-        this.progressBar.style.width = `${progress}%`;
-    }
 }
 
 const tracks = [
-    { src: '1.meaningful love.mp3', img: 'song1.jpeg', artist: 'Silo/Steven Cranberry', name: 'meaningful love - instrumental' },
-    { src: '2.Dark Red.mp3', img: 'song2.jpeg', artist: 'Steve Lacy', name: 'Dark Red' },
-    { src: '3.welcome and goodbye.mp3', img: 'song3.jpeg', artist: 'Dream/Ivory', name: 'welcome and goodbye' },
-    { src: '4.I Really Want to Stay at Your House.mp3', img: 'song4.jpeg', artist: 'Rosa Walton/Hallie Coggins', name: 'I Really Want to Stay at Your House' }
+    { src: '1.meaningful love.mp3' },
+    { src: '2.Dark Red.mp3' },
+    { src: '3.welcome and goodbye.mp3' },
+    { src: '4.I Really Want to Stay at Your House.mp3' }
 ];
 
 const player = new MusicPlayer(tracks);
 
-// Loading screen click starts music
+// Start music on loading screen click
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.querySelector(".loading-screen");
     const profileContainer = document.querySelector(".profile-container");
@@ -177,9 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingScreen.addEventListener("click", () => {
         loadingScreen.classList.add("hidden");
         profileContainer.classList.add("fade-in");
-
-        player.audio.play().catch(err => console.log(err));
-        player.controlPanel.classList.add('active');
-        player.infoBar.classList.add('active');
+        player.play();
     });
 });
