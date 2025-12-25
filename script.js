@@ -140,3 +140,41 @@ document.querySelectorAll('.playlist li').forEach((item, idx) => {
         player.updatePlaylistHighlight();
     });
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Page title typing with @ prefix
+    const staticPart = "@";
+    const dynamicTitles = ["E.L.Y.A.S", "e_l_y_a_s", "e!l@y#a$s%"];
+    let currentIndex = 0;
+    let charIndex = 0;
+    let typingForward = true;
+
+    function updateTitle() {
+        const currentText = dynamicTitles[currentIndex];
+
+        if (typingForward) {
+            charIndex++;
+            if (charIndex >= currentText.length) {
+                typingForward = false;
+                setTimeout(updateTitle, 1000); // pause at full text
+                return;
+            }
+        } else {
+            charIndex--;
+            if (charIndex <= 0) {
+                typingForward = true;
+                currentIndex = (currentIndex + 1) % dynamicTitles.length;
+            }
+        }
+
+        // Add blinking cursor
+        document.title = staticPart + currentText.substring(0, charIndex) + "|";
+
+        setTimeout(updateTitle, typingForward ? 150 : 100);
+    }
+
+    updateTitle();
+});
