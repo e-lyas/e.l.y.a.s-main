@@ -100,90 +100,91 @@ document.title = targetTitle.substring(0, currentIndex) || "...";
 }
 setInterval(updateTitle, 500);
 
-// ===== TRACKS =====
-const tracks = [
-  { src: '1.meaningful love.mp3', img: 'song1.jpeg', artist: 'Silo/Steven Cranberry', name: 'meaningful love' },
-  { src: '2.Dark Red.mp3', img: 'song2.jpeg', artist: 'Steve Lacy', name: 'Dark Red' },
-  { src: '3.welcome and goodbye.mp3', img: 'song3.jpeg', artist: 'Dream/Ivory', name: 'welcome and goodbye' },
-  { src: '4.I Really Want to Stay at Your House.mp3', img: 'song4.jpeg', artist: 'Rosa Walton/Hallie Coggins', name: 'I Really Want to Stay at Your House' }
-];
-
-// ===== PRELOAD ALL TRACKS =====
-const preloadedAudios = [];
-tracks.forEach(track => {
-  const audio = new Audio();
-  audio.src = track.src;
-  audio.preload = 'auto';
-  preloadedAudios.push(audio);
-});
-
-// ===== MUSIC PLAYER CLASS =====
+// Music Player
 class MusicPlayer {
-  constructor(tracks) {
-    this.tracks = tracks;
-    this.current = 0;
-    this.audio = new Audio();
-    this.audio.preload = 'auto';
+constructor(tracks) {
+this.tracks = tracks;
+this.currentTrackIndex = 0;
 
-    this.albumArt = document.querySelector('.player .album-art');
-    this.artistElem = document.querySelector('.player .artist');
-    this.nameElem = document.querySelector('.player .name');
-    this.bar = document.querySelector('.player .progress-bar .bar');
+this.audio = new Audio();  
+    this.audio.preload = 'auto';  
+    this.playBtn = document.getElementById('play');  
+    this.controlPanel = document.getElementById('control-panel');  
+    this.infoBar = document.getElementById('info');  
+    this.albumArt = this.controlPanel.querySelector('.album-art');  
+    this.artistElem = this.infoBar.querySelector('.artist');  
+    this.nameElem = this.infoBar.querySelector('.name');  
+    this.progressBar = this.infoBar.querySelector('.progress-bar .bar');  
 
-    document.getElementById('play').addEventListener('click', () => this.toggle());
-    document.getElementById('prev').addEventListener('click', () => this.prev());
-    document.getElementById('next').addEventListener('click', () => this.next());
+    // Preload all tracks  
+    this.tracks.forEach(track => {  
+        const preloader = new Audio();  
+        preloader.src = track.src;  
+        preloader.preload = 'auto';  
+    });  
 
-    this.audio.addEventListener('timeupdate', () => this.updateProgress());
-    this.audio.addEventListener('ended', () => this.next());
+    this.playBtn.addEventListener('click', () => this.togglePlay());  
+    this.audio.addEventListener('timeupdate', () => this.updateProgress());  
+    this.audio.addEventListener('ended', () => this.nextTrack());  
 
-    this.load(this.current);
-  }
+    this.loadTrack(this.currentTrackIndex);  
+}  
 
-  load(index) {
-    const track = this.tracks[index];
-    this.audio.src = track.src;
-    this.artistElem.textContent = track.artist;
-    this.nameElem.textContent = track.name;
-    this.albumArt.style.backgroundImage = `url('${track.img}')`;
-    this.audio.load();
-  }
+loadTrack(index) {  
+    const track = this.tracks[index];  
+    this.audio.src = track.src;  
+    this.artistElem.textContent = track.artist;  
+    this.nameElem.textContent = track.name;  
+    this.albumArt.style.backgroundImage = `url('${track.img}')`;  
+    this.audio.load();  
+}  
 
-  toggle() {
-    if (this.audio.paused) {
-      this.audio.play();
-      this.albumArt.classList.add('playing');
-      document.getElementById('play').textContent = '❚❚';
-    } else {
-      this.audio.pause();
-      this.albumArt.classList.remove('playing');
-      document.getElementById('play').textContent = '►';
-    }
-  }
+togglePlay() {  
+    if (this.audio.paused) {  
+        this.audio.play();  
+        this.controlPanel.classList.add('active');  
+        this.infoBar.classList.add('active');  
+    } else {  
+        this.audio.pause();  
+        this.controlPanel.classList.remove('active');  
+        this.infoBar.classList.remove('active');  
+    }  
+}  
 
-  next() {
-    this.current = (this.current + 1) % this.tracks.length;
-    this.load(this.current);
-    this.audio.play();
-    this.albumArt.classList.add('playing');
-    document.getElementById('play').textContent = '❚❚';
-  }
+nextTrack() {  
+    this.currentTrackIndex = (this.currentTrackIndex + 1) % this.tracks.length;  
+    this.loadTrack(this.currentTrackIndex);  
+    this.audio.play();  
+}  
 
-  prev() {
-    this.current = (this.current - 1 + this.tracks.length) % this.tracks.length;
-    this.load(this.current);
-    this.audio.play();
-    this.albumArt.classList.add('playing');
-    document.getElementById('play').textContent = '❚❚';
-  }
-
-  updateProgress() {
-    const percent = (this.audio.currentTime / this.audio.duration) * 100 || 0;
-    this.bar.style.width = `${percent}%`;
-  }
+updateProgress() {  
+    const progress = (this.audio.currentTime / this.audio.duration) * 100;  
+    this.progressBar.style.width = `${progress}%`;  
 }
 
-// ===== INITIALIZE PLAYER =====
-document.addEventListener('DOMContentLoaded', () => {
-  const player = new MusicPlayer(tracks);
+}
+
+const tracks = [
+{ src: '1.meaningful love.mp3', img: 'song1.jpeg', artist: 'Silo/Steven Cranberry', name: 'meaningful love - instrumental' },
+{ src: '2.Dark Red.mp3', img: 'song2.jpeg', artist: 'Steve Lacy', name: 'Dark Red' },
+{ src: '3.welcome and goodbye.mp3', img: 'song3.jpeg', artist: 'Dream/Ivory', name: 'welcome and goodbye' },
+{ src: '4.I Really Want to Stay at Your House.mp3', img: 'song4.jpeg', artist: 'Rosa Walton/Hallie Coggins', name: 'I Really Want to Stay at Your House' }
+];
+
+const player = new MusicPlayer(tracks);
+
+// Loading screen click starts music
+document.addEventListener("DOMContentLoaded", () => {
+const loadingScreen = document.querySelector(".loading-screen");
+const profileContainer = document.querySelector(".profile-container");
+
+loadingScreen.addEventListener("click", () => {  
+    loadingScreen.classList.add("hidden");  
+    profileContainer.classList.add("fade-in");  
+
+    player.audio.play().catch(err => console.log(err));  
+    player.controlPanel.classList.add('active');  
+    player.infoBar.classList.add('active');  
+});
+
 });
