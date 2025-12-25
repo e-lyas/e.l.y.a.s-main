@@ -1,25 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const textElement = document.querySelector('#typing-text');
-    const texts = ["Made by e-lyas", "e_l.y.a.s", "e.l.y.a.s"];
-    let textIndex = 0, charIndex = 0, isDeleting = false;
+    // Made by e-lyas typing
+    const textElement1 = document.querySelector('#typing-text');
+    const texts1 = ["Made by e-lyas", "e_l.y.a.s", "e.l.y.a.s"];
+    let textIndex1 = 0, charIndex1 = 0, isDeleting1 = false;
 
-    function typeText() {
-        if (!textElement) return;
-        const currentText = texts[textIndex];
-        textElement.innerHTML = currentText.substring(0, charIndex) + "<span style='font-size:1.5em;'>|</span>";
-        if (!isDeleting) {
-            charIndex++;
-            if (charIndex > currentText.length) setTimeout(() => isDeleting = true, 1000);
+    function typeText1() {
+        if (!textElement1) return;
+        const currentText = texts1[textIndex1];
+        textElement1.innerHTML = currentText.substring(0, charIndex1) + "<span style='font-size:1.5em;'>|</span>";
+        if (!isDeleting1) {
+            charIndex1++;
+            if (charIndex1 > currentText.length) setTimeout(() => isDeleting1 = true, 1000);
         } else {
-            charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
+            charIndex1--;
+            if (charIndex1 === 0) {
+                isDeleting1 = false;
+                textIndex1 = (textIndex1 + 1) % texts1.length;
             }
         }
-        setTimeout(typeText, isDeleting ? 100 : 150);
+        setTimeout(typeText1, isDeleting1 ? 100 : 150);
     }
-    typeText();
+    typeText1();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // e_l.y.a.s typing
+    const textElement2 = document.querySelector('.RnVja3lvdQ');
+    const texts2 = ["E.L.Y.A.S","e_l_y_a_s","e!l@y#a$s%"];
+    let textIndex2 = 0, charIndex2 = 0, isDeleting2 = false;
+
+    function typeText2() {
+        if (!textElement2) return;
+        const currentText = texts2[textIndex2];
+        textElement2.innerHTML = currentText.substring(0, charIndex2) + "<span>|</span>";
+        if (!isDeleting2) {
+            charIndex2++;
+            if (charIndex2 > currentText.length) setTimeout(() => isDeleting2 = true, 1000);
+        } else {
+            charIndex2--;
+            if (charIndex2 === 0) {
+                isDeleting2 = false;
+                textIndex2 = (textIndex2 + 1) % texts2.length;
+            }
+        }
+        setTimeout(typeText2, isDeleting2 ? 100 : 150);
+    }
+    typeText2();
 });
 
 // Loading screen
