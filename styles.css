@@ -326,3 +326,34 @@ transition: background-color .3s ease;
 .player .control-panel .controls .next:hover {
 background-color: #eee;
 }
+
+/* === MUSIC PLAYER FIX === */
+.player {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Make sure player appears after the loading screen fade */
+.profile-container.fade-in + .player {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.player .control-panel,
+.player .info {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Optional aesthetic tweak */
+.player .control-panel {
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(5px);
+}
