@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>...</title>
-   <link rel="icon" type="image/jpeg"   href="pfp.jpeg">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>...</title>
+<link rel="icon" type="image/jpeg" href="pfp.jpeg">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Background Video (Deactivated)
-<video id="bg-video" loop autoplay playsinline>
-    <source src="KNSWC4TDNBUW4ZZANFZSA3TJMNSSA2LTEBUXIIDXN5ZHI2BANF2CA5DIN52WO2B7.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
--->
+<!-- Loading Screen -->
+<div class="loading-screen">
+    <div id="guardian"></div> <!-- Animated symbol -->
+    <div class="loading-text"></div> <!-- Typing animation -->
+</div>
 
-<!-- Mute Button -->
-<!-- Desactivated
-<button id="mute-btn">
-    <img src="sound-on.png" alt="Mute Button">
-</button>
--->
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div id="guardian"></div> <!-- Animated Symbol -->
-        <div class="glow-line"></div> <!-- Glowing Line -->
-        <div class="loading-text"></div> <!-- Typing Animation -->
+<!-- Profile Section -->
+<div class="profile-container">
+    <img src="pfp.jpeg" alt="Profile Picture" class="profile-pic">
+    <h1 class="username">E_l.y.a.s</h1>
+    <div class="RnVja3lvdQ"></div> <!-- Secondary typing effect -->
+    <p id="typing-text">e-lyas</p>
+
+    <!-- Social Links -->
+    <div class="social-icons">
+        <a href="https://emn178.github.io/online-tools/base64_encode.html">
+            <img src="https://i.imgur.com/pWcZpl8.gif" alt="Social Link">
+        </a>
     </div>
+</div>
 
-    <!-- Profile Section -->
-    <div class="profile-container">
-        <img src="pfp.jpeg" alt="Profile Picture" class="profile-pic">
-        <h1 class="username">E_l.y.a.s</h1>
-        <div class="RnVja3lvdQ"></div>
-        <p id="typing-text">e-lyas</p>
-
-        <!-- Social Links -->
-        <div class="social-icons">
-            
-<a href="https://emn178.github.io/online-tools/base64_encode.html" class="SUhhdGVFdmVyeW9uZQ==">
-                <img src="https://i.imgur.com/pWcZpl8.gif" alt="S2lsbCB5b3Vyc2VsZg==">
-            </a>
+<!-- Music Player -->
+<div class="player">
+    <div id="info" class="info">
+        <span class="artist">Flume</span>
+        <span class="name">Say it</span>
+        <div class="progress-bar">
+            <div class="bar"></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <div id="control-panel" class="control-panel">
+        <div class="album-art"></div>
+        <div class="controls">
+            <div class="prev"></div>
+            <div id="play" class="play"></div>
+            <div class="next"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
