@@ -196,7 +196,6 @@ muteBtn.addEventListener("click", () => {
 Desactivated
 
 */
-
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.querySelector(".loading-screen");
     const profileContainer = document.querySelector(".profile-container");
@@ -205,12 +204,14 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingScreen.classList.add("hidden");
         profileContainer.classList.add("fade-in");
 
-        // Start the music after user interaction
+        // Start music after click
         if (player.audio.paused) {
             player.audio.play().catch(err => console.log(err));
-            player.controlPanel.classList.add('active');
-            player.infoBar.classList.add('active');
         }
+
+        // Show info bar and control panel immediately
+        player.controlPanel.classList.add('active');
+        player.infoBar.classList.add('active');
     });
 });
 
