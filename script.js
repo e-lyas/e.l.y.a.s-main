@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     // e_l.y.a.s typing
     const textElement2 = document.querySelector('.RnVja3lvdQ');
-    const texts2 = ["i like cats😸","HTML.CSS.JS","e!l@y#a$s%"];
+    const texts2 = ["i like cats😸","HTML.CSS.JS","elyas😹✌️"];
     let textIndex2 = 0, charIndex2 = 0, isDeleting2 = false;
 
     function typeText2() {
