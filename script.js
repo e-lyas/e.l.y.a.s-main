@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Made by e-lyas typing
     const textElement1 = document.querySelector('#typing-text');
-    const texts1 = ["Made by e-lyas", "e_l.y.a.s", "e.l.y.a.s"];
+    const texts1 = ["i like cats 😸", "...🌐...🔨...🖤...", "01100101 01101100 01111001 01100001 01110011"];
     let textIndex1 = 0, charIndex1 = 0, isDeleting1 = false;
 
     function typeText1() {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     // e_l.y.a.s typing
     const textElement2 = document.querySelector('.RnVja3lvdQ');
-    const texts2 = ["i like cats😸","HTML.CSS.JS","elyas😹✌️"];
+    const texts2 = ["Made by e-lyas","|HTML|CSS|JS|","Made by e_l.y.a.s","|HTML|CSS|JS|","🌐Web Developer🌐","|HTML|CSS|JS|"];
     let textIndex2 = 0, charIndex2 = 0, isDeleting2 = false;
 
     function typeText2() {
