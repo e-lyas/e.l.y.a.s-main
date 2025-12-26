@@ -182,14 +182,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// Asset URLs
+
+
 const assets = {
     favicon: "https://icy-silence-30a0.dream66black.workers.dev",
     profilePic: "https://icy-silence-30a0.dream66black.workers.dev",
     bgVideo: "https://restless-snow-6a80.dream66black.workers.dev"
 };
 
-// Preload function
+// Preload utility
 function preload(src, type = "image") {
     return new Promise((resolve, reject) => {
         if (type === "image") {
@@ -198,48 +199,44 @@ function preload(src, type = "image") {
             img.onload = () => resolve(src);
             img.onerror = reject;
         } else if (type === "video") {
-            const video = document.createElement('video');
-            video.src = src;
-            video.onloadeddata = () => resolve(src);
-            video.onerror = reject;
+            const v = document.createElement("video");
+            v.src = src;
+            v.onloadeddata = () => resolve(src);
+            v.onerror = reject;
         }
     });
 }
 
 // Replace favicon
-function replaceFavicon(url) {
-    let link = document.querySelector("link[rel~='icon']");
+function setFavicon(url) {
+    let link = document.querySelector("link[rel='icon']");
     if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
+        link = document.createElement("link");
+        link.rel = "icon";
         document.head.appendChild(link);
     }
     link.href = url;
 }
 
-// Replace profile picture
-function replaceProfilePic(url) {
-    const img = document.querySelector(".profile-pic");
-    if (img) img.src = url;
-}
-
-// Replace background video
-function replaceBgVideo(url) {
-    const video = document.querySelector("#bg-video");
-    const source = video?.querySelector("source");
-    if (video && source) {
-        source.src = url;
-        video.load();
-    }
-}
-
-// Preload all assets then replace
+// Start preloading external assets
 Promise.all([
     preload(assets.favicon),
     preload(assets.profilePic),
     preload(assets.bgVideo, "video")
 ]).then(() => {
-    replaceFavicon(assets.favicon);
-    replaceProfilePic(assets.profilePic);
-    replaceBgVideo(assets.bgVideo);
-}).catch(err => console.error("Asset loading failed:", err));
+    // Favicon
+    setFavicon(assets.favicon);
+
+    // Profile picture
+    const profile = document.querySelector(".profile-pic");
+    if (profile) profile.src = assets.profilePic;
+
+    // Background video
+    const video = document.querySelector("#bg-video");
+    const source = video.querySelector("source");
+    if (video && source) {
+        // Only replace when fully loaded
+        source.src = assets.bgVideo;
+        video.load();
+    }
+}).catch(err => console.error("Loading error:", err));
