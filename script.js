@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Made by e-lyas typing
     const textElement1 = document.querySelector('#typing-text');
-    const texts1 = ["i like cats 😸", "...🌐...🔨...🖤...", "01100101 01101100 01111001 01100001 01110011"];
+    const texts1 = ["i like cats 😸", "...🌐...🔨...🖤...", "01001001 01001100 01011001"];
     let textIndex1 = 0, charIndex1 = 0, isDeleting1 = false;
 
     function typeText1() {
