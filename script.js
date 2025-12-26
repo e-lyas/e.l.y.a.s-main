@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 textIndex2 = (textIndex2 + 1) % texts2.length;
             }
         }
-        setTimeout(typeText2, isDeleting2 ? 150 : 200);
+        setTimeout(typeText2, isDeleting2 ? 125 : 225);
     }
     typeText2();
 });
