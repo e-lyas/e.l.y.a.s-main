@@ -9,6 +9,7 @@
     height: 100vh;
     object-fit: cover;
     z-index: -1; /* keep it behind everything */
+        background-image: url('Background.jpg');  
     background: black; /* fallback color */
 }
 
