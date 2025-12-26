@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     // e_l.y.a.s typing
     const textElement2 = document.querySelector('.RnVja3lvdQ');
-    const texts2 = ["Made by e-lyas","|HTML|CSS|JS|","Made by e_l.y.a.s","|HTML|CSS|JS|","🌐Web Developer🌐","|HTML|CSS|JS|"];
+    const texts2 = ["Made by e-lyas","|HTML|CSS|JS","Made by e_l.y.a.s","|HTML|CSS|JS","🌐Web Developer🌐","|HTML|CSS|JS"];
     let textIndex2 = 0, charIndex2 = 0, isDeleting2 = false;
 
     function typeText2() {
