@@ -8,9 +8,13 @@
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    z-index: -1;
-    background-color: black;
-        background-image: url('Background.jpg');
+    z-index: -1; /* keep it behind everything */
+    
+    background-color: black; /* fallback color */
+    background-image: url('Background.jpg');  
+    background-size: cover;  
+    background-position: center;  
+    background-repeat: no-repeat;  
 }
 
 
