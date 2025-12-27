@@ -82,23 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Music Player logic without UI
 class MusicPlayer {
     constructor(tracks) {
         this.tracks = tracks;
         this.currentTrackIndex = 0;
         this.audio = new Audio();
         this.audio.preload = 'auto';
-
-        // Preload all tracks
-        this.tracks.forEach(track => {
-            const preloader = new Audio();
-            preloader.src = track.src;
-            preloader.preload = 'auto';
-        });
-
         this.audio.addEventListener('ended', () => this.nextTrack());
-
         this.loadTrack(this.currentTrackIndex);
     }
 
@@ -107,6 +97,19 @@ class MusicPlayer {
         this.audio.src = track.src;
         this.audio.load();
         this.currentTrackIndex = index;
+
+        // After first track loads, start preloading others
+        if (index === 0) {
+            this.audio.addEventListener('canplaythrough', () => this.preloadOthers(), { once: true });
+        }
+    }
+
+    preloadOthers() {
+        this.tracks.slice(1).forEach(track => {
+            const preloader = new Audio();
+            preloader.src = track.src;
+            preloader.preload = 'auto';
+        });
     }
 
     nextTrack() {
@@ -122,7 +125,6 @@ class MusicPlayer {
         allTracks[this.currentTrackIndex].classList.add('active');
     }
 }
-
 const tracks = [
     { src: '1.meaningful love.mp3' },
     { src: '2.Dark Red.mp3' },
