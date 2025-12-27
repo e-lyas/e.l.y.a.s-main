@@ -134,10 +134,9 @@ class MusicPlayer {
 }
 
 const tracks = [
-    { src: '1.meaningful love.mp3' },
-    { src: '2.Dark Red.mp3' },
-    { src: '3.welcome and goodbye.mp3' },
-    { src: '4.I Really Want to Stay at Your House.mp3' }
+    { src: 'song1.mp3' },
+    { src: 'song2.mp3' },
+    { src: 'song3.mp3' }
 ];
 
 const player = new MusicPlayer(tracks);
