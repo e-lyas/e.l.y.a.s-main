@@ -88,8 +88,15 @@ class MusicPlayer {
         this.currentTrackIndex = 0;
         this.audio = new Audio();
         this.audio.preload = 'auto';
+
+        // when the current song ends, load the next
         this.audio.addEventListener('ended', () => this.nextTrack());
+
+        // load the first track right away
         this.loadTrack(this.currentTrackIndex);
+
+        // once first is fully buffered, trigger staged preloading
+        this.audio.addEventListener('canplaythrough', () => this.preloadSequential(1), { once: true });
     }
 
     loadTrack(index) {
@@ -97,19 +104,17 @@ class MusicPlayer {
         this.audio.src = track.src;
         this.audio.load();
         this.currentTrackIndex = index;
-
-        // After first track loads, start preloading others
-        if (index === 0) {
-            this.audio.addEventListener('canplaythrough', () => this.preloadOthers(), { once: true });
-        }
     }
 
-    preloadOthers() {
-        this.tracks.slice(1).forEach(track => {
-            const preloader = new Audio();
-            preloader.src = track.src;
-            preloader.preload = 'auto';
-        });
+    // preload one by one after the first finishes loading
+    preloadSequential(startIndex) {
+        if (startIndex >= this.tracks.length) return;
+        const preloader = new Audio();
+        preloader.preload = 'auto';
+        preloader.src = this.tracks[startIndex].src;
+        preloader.addEventListener('canplaythrough', () => {
+            this.preloadSequential(startIndex + 1);
+        }, { once: true });
     }
 
     nextTrack() {
@@ -122,9 +127,12 @@ class MusicPlayer {
     updatePlaylistHighlight() {
         const allTracks = document.querySelectorAll('.playlist li');
         allTracks.forEach(li => li.classList.remove('active'));
-        allTracks[this.currentTrackIndex].classList.add('active');
+        if (allTracks[this.currentTrackIndex]) {
+            allTracks[this.currentTrackIndex].classList.add('active');
+        }
     }
 }
+
 const tracks = [
     { src: '1.meaningful love.mp3' },
     { src: '2.Dark Red.mp3' },
