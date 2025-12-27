@@ -1,5 +1,7 @@
+// ----------------------
+// Typing animations
+// ----------------------
 document.addEventListener("DOMContentLoaded", () => {
-    // Made by e-lyas typing
     const textElement1 = document.querySelector('#typing-text');
     const texts1 = ["i like cats 😸", "...🌐...🔨...🖤...", "01001001 01001100 01011001"];
     let textIndex1 = 0, charIndex1 = 0, isDeleting1 = false;
@@ -24,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // e_l.y.a.s typing
     const textElement2 = document.querySelector('.RnVja3lvdQ');
     const texts2 = ["Made by e-lyas","HTML|CSS|JS","Made by e_l.y.a.s","HTML|CSS|JS","🌐Web Developer🌐","HTML|CSS|JS"];
     let textIndex2 = 0, charIndex2 = 0, isDeleting2 = false;
@@ -136,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadingScreen.addEventListener("click", () => {
         loadingScreen.classList.add("hidden");
+        profileContainer.classList.add("fade-in");
 
         // start music + background video together
         player.audio.play().catch(err => console.log(err));
@@ -155,11 +157,6 @@ document.querySelectorAll('.playlist li').forEach((item, idx) => {
         player.loadTrack(idx);
         player.audio.play();
         player.updatePlaylistHighlight();
-
-        const bgVideo = document.querySelector("#bg-video");
-        if (bgVideo && bgVideo.paused) {
-            bgVideo.play().catch(err => console.log("Video autoplay blocked:", err));
-        }
     });
 });
 
