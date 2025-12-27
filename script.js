@@ -76,10 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
     typeLoadingText();
 
     loadingScreen.addEventListener("click", () => {
-        loadingScreen.classList.add("hidden");
-        profileContainer.classList.add("fade-in");
-        player.audio.play().catch(err => console.log(err)); // start playback
-    });
+    loadingScreen.classList.add("hidden");
+
+    // start music + background video together
+    player.audio.play().catch(err => console.log(err));
+
+    const bgVideo = document.querySelector("#bg-video");
+    if (bgVideo) {
+        bgVideo.play().catch(err => console.log("Video autoplay blocked:", err));
+    }
 });
 
 class MusicPlayer {
