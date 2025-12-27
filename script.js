@@ -48,45 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     typeText2();
 });
 
-// Loading screen
-document.addEventListener("DOMContentLoaded", () => {
-    const loadingScreen = document.querySelector(".loading-screen");
-    const profileContainer = document.querySelector(".profile-container");
-    const loadingText = document.querySelector(".loading-text");
-
-    const loadingMessages = ["CLICK ME✌️","CLICK ME🫣","CLICK ME👻"];
-    let index = 0, charIndex = 0, isDeleting = false;
-
-    function typeLoadingText() {
-        if (!loadingText) return;
-        let currentText = loadingMessages[index];
-        loadingText.innerHTML = currentText.substring(0, charIndex) + "<span>|</span>";
-        if (!isDeleting) {
-            charIndex++;
-            if (charIndex > currentText.length) setTimeout(() => isDeleting = true, 1000);
-        } else {
-            charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                index = (index + 1) % loadingMessages.length;
-            }
-        }
-        setTimeout(typeLoadingText, isDeleting ? 100 : 150);
-    }
-    typeLoadingText();
-
-    loadingScreen.addEventListener("click", () => {
-    loadingScreen.classList.add("hidden");
-
-    // start music + background video together
-    player.audio.play().catch(err => console.log(err));
-
-    const bgVideo = document.querySelector("#bg-video");
-    if (bgVideo) {
-        bgVideo.play().catch(err => console.log("Video autoplay blocked:", err));
-    }
-});
-
+// ----------------------
+// MusicPlayer class + setup
+// ----------------------
 class MusicPlayer {
     constructor(tracks) {
         this.tracks = tracks;
@@ -94,13 +58,8 @@ class MusicPlayer {
         this.audio = new Audio();
         this.audio.preload = 'auto';
 
-        // when the current song ends, load the next
         this.audio.addEventListener('ended', () => this.nextTrack());
-
-        // load the first track right away
         this.loadTrack(this.currentTrackIndex);
-
-        // once first is fully buffered, trigger staged preloading
         this.audio.addEventListener('canplaythrough', () => this.preloadSequential(1), { once: true });
     }
 
@@ -111,7 +70,6 @@ class MusicPlayer {
         this.currentTrackIndex = index;
     }
 
-    // preload one by one after the first finishes loading
     preloadSequential(startIndex) {
         if (startIndex >= this.tracks.length) return;
         const preloader = new Audio();
@@ -145,22 +103,70 @@ const tracks = [
 ];
 
 const player = new MusicPlayer(tracks);
-player.updatePlaylistHighlight(); // highlight the first track on page load
+player.updatePlaylistHighlight();
 
+// ----------------------
+// Loading screen
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.querySelector(".loading-screen");
+    const profileContainer = document.querySelector(".profile-container");
+    const loadingText = document.querySelector(".loading-text");
+
+    const loadingMessages = ["CLICK ME✌️","CLICK ME🫣","CLICK ME👻"];
+    let index = 0, charIndex = 0, isDeleting = false;
+
+    function typeLoadingText() {
+        if (!loadingText) return;
+        let currentText = loadingMessages[index];
+        loadingText.innerHTML = currentText.substring(0, charIndex) + "<span>|</span>";
+        if (!isDeleting) {
+            charIndex++;
+            if (charIndex > currentText.length) setTimeout(() => isDeleting = true, 1000);
+        } else {
+            charIndex--;
+            if (charIndex === 0) {
+                isDeleting = false;
+                index = (index + 1) % loadingMessages.length;
+            }
+        }
+        setTimeout(typeLoadingText, isDeleting ? 100 : 150);
+    }
+    typeLoadingText();
+
+    loadingScreen.addEventListener("click", () => {
+        loadingScreen.classList.add("hidden");
+
+        // start music + background video together
+        player.audio.play().catch(err => console.log(err));
+
+        const bgVideo = document.querySelector("#bg-video");
+        if (bgVideo) {
+            bgVideo.play().catch(err => console.log("Video autoplay blocked:", err));
+        }
+    });
+});
+
+// ----------------------
 // Playlist click
+// ----------------------
 document.querySelectorAll('.playlist li').forEach((item, idx) => {
     item.addEventListener('click', () => {
         player.loadTrack(idx);
         player.audio.play();
         player.updatePlaylistHighlight();
+
+        const bgVideo = document.querySelector("#bg-video");
+        if (bgVideo && bgVideo.paused) {
+            bgVideo.play().catch(err => console.log("Video autoplay blocked:", err));
+        }
     });
 });
 
-
-
-
+// ----------------------
+// Page title typing
+// ----------------------
 document.addEventListener("DOMContentLoaded", () => {
-    // Page title typing with @ prefix
     const staticPart = "@";
     const dynamicTitles = ["e-lyas", "e_l.y.a.s", "elyas😹✌️"];
     let currentIndex = 0;
@@ -169,12 +175,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateTitle() {
         const currentText = dynamicTitles[currentIndex];
-
         if (typingForward) {
             charIndex++;
-            if (charIndex > currentText.length) { // fix off-by-one
+            if (charIndex > currentText.length) {
                 typingForward = false;
-                setTimeout(updateTitle, 1000); // pause at full text
+                setTimeout(updateTitle, 1000);
                 return;
             }
         } else {
@@ -184,16 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentIndex = (currentIndex + 1) % dynamicTitles.length;
             }
         }
-
-        // No cursor, just @ + text
         document.title = staticPart + currentText.substring(0, charIndex);
-
         setTimeout(updateTitle, typingForward ? 150 : 100);
     }
 
     updateTitle();
 });
-
-
-
-
