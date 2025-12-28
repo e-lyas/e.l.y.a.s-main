@@ -37,7 +37,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.2); /* slightly dark for mobile */
+    background: rgba(0, 0, 0, 0); /* slightly dark for mobile */
     border-radius: 15px;
     padding: 20px;
     width: 380px;
