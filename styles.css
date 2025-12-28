@@ -47,6 +47,15 @@ body {
     transition: opacity 1.2s ease-out, transform 1s ease-out;
 }
 
+
+/* PC-specific profile background */
+@media (min-width: 1024px) {  /* breakpoint for PC */
+    .profile-container {
+        background: rgba(0, 0, 0, 0.6); /* visible dark background */
+        backdrop-filter: blur(10px);    /* smooth glass effect */
+    }
+}
+
 .profile-container.fade-in {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
