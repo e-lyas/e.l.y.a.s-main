@@ -31,20 +31,19 @@ body {
     background-attachment: fixed;
 }
 
-/* Profile container visible for all screens (testing) */
+/* Profile container visible for all screens without glass effect */
 .profile-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6); /* visible on mobile and PC */
-    backdrop-filter: blur(10px);    /* optional glass effect */
+    background: rgba(0, 0, 0, 0.8); /* solid dark background */
     border-radius: 15px;
     padding: 20px;
     width: 380px;
     max-width: 90vw;
     z-index: 2;
-    opacity: 1; /* ensure fully visible for testing */
+    opacity: 1; /* fully visible */
     transition: opacity 1.2s ease-out, transform 1s ease-out;
 }
 
