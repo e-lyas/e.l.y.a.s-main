@@ -182,8 +182,7 @@ body {
     border-radius: 15px;
     padding: 15px;
     text-align: left;
-    max-height: 250px; /* keep height limit */
-    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    max-height: 300px; /* keep height limit */
     display: flex;
     flex-direction: column;
 }
