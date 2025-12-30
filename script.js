@@ -3,7 +3,7 @@
 // ----------------------
 document.addEventListener("DOMContentLoaded", () => {
     const textElement1 = document.querySelector('#typing-text');
-    const texts1 = ["i like cats 😸", "...🌐...🔨...🖤...", "01001001 01001100 01011001"];
+    const texts1 = ["i like cats 😸", "🖤...🌐...🩶...🔨...🤍", "01001001 01001100 01011001"];
     let textIndex1 = 0, charIndex1 = 0, isDeleting1 = false;
 
     function typeText1() {
