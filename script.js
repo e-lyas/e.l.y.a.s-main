@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 index = (index + 1) % loadingMessages.length;
             }
         }
-        setTimeout(typeLoadingText, isDeleting ? 100 : 150);
+        setTimeout(typeLoadingText, isDeleting ? 250 : 450);
     }
     typeLoadingText();
 
