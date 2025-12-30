@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileContainer = document.querySelector(".profile-container");
     const loadingText = document.querySelector(".loading-text");
 
-    const loadingMessages = ["CLICK ME✌️","CLICK ME🫣","CLICK ME👻"];
+    const loadingMessages = ["CLICK ME🖤","CLICK ME🩶","CLICK ME🤍"];
     let index = 0, charIndex = 0, isDeleting = false;
 
     function typeLoadingText() {
