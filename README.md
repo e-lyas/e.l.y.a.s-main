@@ -48,4 +48,4 @@ Instagram: [@e_l.y.a.s](https://www.instagram.com/e_l.y.a.s?igsh=bnc1ZnlsNHBkZ2k
 
 ## License
 
-MIT License — free to use, modify, and redistribute.
+[MIT License](https://github.com/e-lyas/Social-Links/blob/main/LICENSE) — free to use, modify, and redistribute.
