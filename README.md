@@ -21,7 +21,7 @@ A modern, interactive social links website built for creators and developers. Fu
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/your-social-links-site.git
+git clone https://github.com/e-lyas/Social-Links.git
 ````
 
 2. **Customize your content**
